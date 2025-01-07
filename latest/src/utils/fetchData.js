@@ -1,8 +1,9 @@
 export const recipeOptions  = {
     method: 'GET',
     url: 'https://starbucks-coffee-db2.p.rapidapi.com/api/recipes',
-    qs: {
-      category: 'HOT BEVERAGES'
+    qs: {name: 'mocha'},
+    headers: {
+
     },
       headers: {
       'x-rapidapi-key': 'd3906decfdmsh384a5ec5cb7a21bp165315jsn4bd87703193e',

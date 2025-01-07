@@ -1,36 +1,21 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Recipe = ({ recipe }) => {
+const Recipes = ({ recipe }) => {
   return (
-   
-    
-    <div className=" flex flex-1"> 
-    <h1 className='text-3xl flex-none'>{recipe.name}</h1>
-      {/* Recipe Image */}
-     {recipe.image &&(
-      <img
-    src={recipe.image}
-    alt={recipe.name}
-    className=' w-[400px] h-[270px] rounded-md grid grid-cols-4'
-/>
-     )}
-
-      {/* Ingredients List 
-      {recipe.recipeIngredient && recipe.recipeIngredient.length > 0 ? (
-        <ul className="mt-4">
-          <h3 className="text-lg font-emibold text-gray-700">Ingredients:</h3>
-          {recipe.recipeIngredient.map((ingredient, index) => (
-            <li key={index} className="text-gray-600">
-              - {ingredient}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="text-gray-500 mt-4">No ingredients listed.</p>
-      )}
-      */}
-    </div>
+    <Link to={`/recipe/${recipe._id}`}>
+      <div className="p-4 border rounded-md shadow-md bg-white mb-4">
+        <h2 className="text-xl font-bold text-gray-800">{recipe.name}</h2>
+        <p className="text-gray-600 mt-2">{recipe.description || 'No description available.'}</p>
+        {recipe.image && (
+          <img
+            src={recipe.image}
+            alt={recipe.name}
+            className="w-full h-40 object-cover rounded-md mt-4"
+          />
+        )}
+      </div>
+    </Link>
   );
 };
 
-export default Recipe;
+export default Recipes;

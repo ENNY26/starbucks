@@ -1,14 +1,16 @@
 import React from 'react';
-import Nav from './Components/Nav';
-import Home from './Pages/Home';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import Recipedetails from './pages/Recipedetails';
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Nav />
-      <Home/>
-      
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/recipe/:_id" element={<Recipedetails />} />
+      </Routes>
+    </Router>
   );
 };
 
