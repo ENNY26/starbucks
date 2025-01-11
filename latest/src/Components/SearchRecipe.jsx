@@ -9,11 +9,11 @@ const SearchRecipe = ({ onSearch }) => {
   };
 
   return (
-    <form className="px-14 py-2 flex" onSubmit={handleSubmit}>
+    <form className="px-14 py-2 flex" onSubmit={handleSubmit} >
       <input
         type="text"
         placeholder="Search Starbucks recipes"
-        className="w-full p-4 flex flex-1 items-center justify-center"
+        className="max-w-md p-4 flex flex-1 items-center justify-center border-2 border-gray-700 rounded-lg"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         name="search"

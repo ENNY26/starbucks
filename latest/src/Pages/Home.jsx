@@ -7,10 +7,9 @@ import Pagination from '../Components/Pagination'; // Create this component sepa
 import { recipeOptions, fetchData } from '../utils/fetchData';
 
 const Home = () => {
-  const [recipes, setRecipes] = useState([]); // State for fetched recipes
-  const [currentPage, setCurrentPage] = useState(1); // State to track current page
-  const recipesPerPage = 10; // Define how many recipes per page
-
+  const [recipes, setRecipes] = useState([]); 
+  const [currentPage, setCurrentPage] = useState(1); 
+  const recipesPerPage = 10; 
   // Fetch recipes on search
   const handleSearch = async (search) => {
     if (search) {
@@ -18,17 +17,15 @@ const Home = () => {
         'https://starbucks-coffee-db2.p.rapidapi.com/api/recipes',
         recipeOptions
       );
-      setRecipes(recipeData); // Store recipes
-      setCurrentPage(1); // Reset to the first page after a new search
+      setRecipes(recipeData); 
+      setCurrentPage(1); 
     }
   };
 
-  // Calculate the recipes for the current page
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
-  // Function to handle page changes
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
