@@ -4,6 +4,9 @@ import cup from "../assets/Icons/coffeecup.svg";
 import iced from "../assets/Icons/iced.svg";
 import latte from "../assets/Icons/latte.svg";
 import details from "../assets/Icons/details.svg";
+import { Link } from "react-router-dom";
+
+
 const Hero = () => {
   return (
     <div className="flex ">
@@ -20,9 +23,13 @@ const Hero = () => {
           instructions
         </h4>
         <div>
+
+          <Link to='login'>
           <button className="bg-[#086942] rounded-md p-2 w-21">
             Get started{" "}
           </button>
+          </Link>
+
         </div>
         <div className="m-1 grid grid-cols-2 pt-7 gap-6">
           <div className="flex items-center">
