@@ -21,6 +21,7 @@ const Nav = () => {
       <li onClick={() => setToggle(false)} className='cursor-pointer'>Search</li>
       <li onClick={() => setToggle(false)} className='cursor-pointer'>About</li>
       <li onClick={() => setToggle(false)} className='cursor-pointer'>Contacts</li>
+      <img src={logo} alt="" />
     </ul>
 
       <div>
