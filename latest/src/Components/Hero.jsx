@@ -6,84 +6,56 @@ import latte from "../assets/Icons/latte.svg";
 import details from "../assets/Icons/details.svg";
 import { Link } from "react-router-dom";
 
-
 const Hero = () => {
   return (
-    <div className="flex ">
-      <div className="p-9 ">
-        <h1 className="font-extrabold text-6xl flex items-center gap-1">
+    <div className="flex flex-col lg:flex-row items-center justify-between min-h-screen bg-gray-100 px-10 py-16">
+      {/* Left Section */}
+      <div className="max-w-2xl space-y-6 text-center lg:text-left">
+        <h1 className="text-5xl lg:text-7xl font-extrabold text-[#086942] flex items-center gap-2">
           HOW TO: STARBUCKS
-          <span className="inline-block">
-            <img className="w-8 h-8 inline-block" src={cup} alt="cup icon" />
-          </span>
         </h1>
+        <p className="text-gray-600 text-lg leading-relaxed">
+          Your ultimate guide to making the most amazing coffee with detailed instructions.
+        </p>
 
-        <h4>
-          Your ultimate guide to make the most amzing coffee with detailed
-          instructions
-        </h4>
+        {/* Call-to-Action Button */}
         <div>
-
-          <Link to='login'>
-          <button className="bg-[#086942] rounded-md p-2 w-21">
-            Get started{" "}
-          </button>
+          <Link to="/login">
+            <button className="bg-[#086942] text-white text-lg font-semibold py-3 px-6 rounded-full hover:bg-[#075c39] transition-all duration-300 shadow-md">
+              Get Started →
+            </button>
           </Link>
-
         </div>
-        <div className="m-1 grid grid-cols-2 pt-7 gap-6">
-          <div className="flex items-center">
-            <img
-              src={latte}
-              alt=""
-              className="bg-gray-300 rounded-full max-w-11"
-            />
-            <h3>
-              Over 100 recipes <br /> available
-            </h3>
-          </div>
-          <div className="flex items-center gap-2 ">
-            <img
-              src={iced}
-              alt=""
-              className="bg-gray-300 rounded-full max-w-11"
-            />
-            <h3>
-              several categories to <br /> choose from
-            </h3>
-          </div>
-          <div className="flex items-center gap-2 ">
-            <img
-              src={cup}
-              alt=""
-              className="bg-gray-300 rounded-full max-w-11"
-            />
-            <h3>
-              recipe for both cold and <br />
-              hot drinks
-            </h3>
-          </div>
-          <div className="flex items-center gap-9 ">
-            <img
-              src={details}
-              alt=""
-              className="bg-gray-300 rounded-full max-w-11"
-            />
-            <h3>
-              detailed step by step <br />
-              instruction
-            </h3>
-          </div>
+
+        {/* Features Section */}
+        <div className="grid grid-cols-2 gap-6 pt-8">
+          <FeatureItem icon={latte} text="Over 100 recipes available" />
+          <FeatureItem icon={iced} text="Several categories to choose from" />
+          <FeatureItem icon={cup} text="Recipes for both cold and hot drinks" />
+          <FeatureItem icon={details} text="Detailed step-by-step instructions" />
         </div>
       </div>
 
-      <div>
+      {/* Right Section - Image */}
+      <div className="mt-10 lg:mt-0">
         <img
           src={heroimg}
-          alt="hero image"
-          className="rounded-s-full min-w-70"
+          alt="Hero"
+          className="rounded-lg lg:rounded-s-full shadow-lg max-w-sm lg:max-w-md"
         />
       </div>
+    </div>
+  );
+};
+
+// Feature Item Component
+const FeatureItem = ({ icon, text }) => {
+  return (
+    <div className="flex items-center space-x-4">
+      <div className="bg-gray-300 p-3 rounded-full">
+        <img src={icon} alt="Feature Icon" className="w-10 h-10" />
+      </div>
+      <h3 className="text-gray-700 font-semibold text-lg">{text}</h3>
     </div>
   );
 };

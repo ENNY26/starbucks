@@ -1,73 +1,63 @@
-import React from 'react'
-import pwd from '../assets/Icons/pwd.svg'
-import email from '../assets/Icons/email.svg'
-import username from '../assets/Icons/user.svg'
-import googleicon from '../assets/Icons/google.svg'
+import React, { useState } from "react";
+import { login } from "../Config/firebase"; // Import login function
+import { useNavigate } from "react-router-dom"; // For navigation
 
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // Hook for navigation
 
-const Login = ()=> {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await login(email, password, navigate);
+  };
+
   return (
-  <div className="min-h-screen flex items-center justify-center bg-gray-100">
-    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-      <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-      <form>
-        <div className="mb-4">
-          <label className="block text-gray-700">Username</label>
-          <div className="flex items-center border border-gray-300 rounded-md">
-            <span className="px-3 text-gray-500">
-              <img src={username} alt="username-icon" className='max-w-5' />
-            </span>
-            <input
-              type="username"
-              placeholder="Enter your Username"
-              className="w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-r-md"
-            />
-          </div>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Email</label>
-          <div className="flex items-center border border-gray-300 rounded-md">
-            <span className="px-3 text-gray-500">
-              <img src={email} alt="email-icon" className='max-w-5' />
-            </span>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border border-gray-200">
+        <h2 className="text-3xl font-bold mb-6 text-center text-[#086942]">Login</h2>
+        <form onSubmit={handleLogin}>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-r-md"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#086942]"
+              required
             />
           </div>
-        </div>
-        <div className="mb-6">
-          <label className="block text-gray-700">Password</label>
-          <div className="flex items-center border border-gray-300 rounded-md">
-            <span className="px-3 text-gray-500">
-            <img src={pwd} alt="password-icon" className='max-w-5'/></span>
+          <div className="mb-6">
+            <label className="block text-gray-700 font-medium">Password</label>
             <input
               type="password"
               placeholder="Enter your password"
-              className="w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-r-md"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#086942]"
+              required
             />
           </div>
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200"
-        >
-          Login
-        </button>
-        <h1 className=' pt-5 text-center'>OR</h1> <br />
-
-      </form>
-      <div className='flex items center justify-center'>
-      <div className=' flex gap-3 bg-lime-50 rounded-md py-4 px-6 cursor-pointer'>
-        <img src={googleicon} alt="google-icon" className='max-w-4' />
-        <a href=''>Sign in With Google</a>
+          <button
+            type="submit"
+            className="w-full bg-[#086942] text-white py-2 px-4 rounded-md hover:bg-[#075c39] transition duration-200 font-semibold"
+          >
+            Login
+          </button>
+        </form>
+        <p className="text-center text-gray-600 mt-4">
+          Don't have an account?{" "}
+          <span
+            onClick={() => navigate("/signup")}
+            className="text-[#086942] font-medium cursor-pointer hover:underline"
+          >
+            Sign Up
+          </span>
+        </p>
       </div>
     </div>
-    </div>
-   
-  </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const SearchRecipe = ({ onSearch }) => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -9,18 +9,23 @@ const SearchRecipe = ({ onSearch }) => {
   };
 
   return (
-    <form className="px-14 py-2 flex" onSubmit={handleSubmit} >
+    <form 
+      className="flex items-center gap-4 max-w-2xl mx-auto p-4 bg-white shadow-lg rounded-full border border-gray-300"
+      onSubmit={handleSubmit}
+    >
+      {/* Search Input */}
       <input
         type="text"
-        placeholder="Search Starbucks recipes"
-        className="max-w-md p-4 flex flex-1 items-center justify-center border-2 border-gray-700 rounded-lg"
+        placeholder="Search Starbucks recipes..."
+        className="flex-1 p-3 pl-5 text-gray-700 rounded-full border-none outline-none focus:ring-2 focus:ring-[#086942] shadow-sm"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        name="search"
       />
+
+      {/* Search Button */}
       <button
         type="submit"
-        className="bg-gray-700 w-[120px] rounded-lg border-0 text-white"
+        className="bg-gradient-to-r from-[#086942] to-[#075c39] text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-all"
       >
         Search
       </button>
