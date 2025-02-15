@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion"; // Import Framer Motion
 import { login } from "../Config/firebase"; // Import login function
 import { useNavigate } from "react-router-dom"; // For navigation
 
@@ -14,7 +15,13 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border border-gray-200">
+      {/* Framer Motion Animation */}
+      <motion.div
+        initial={{ y: -100, opacity: 0 }} // Start position (above and invisible)
+        animate={{ y: 0, opacity: 1 }} // End position (drop down and fade in)
+        transition={{ type: "spring", stiffness: 100, damping: 15 }} // Spring animation
+        className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border border-gray-200"
+      >
         <h2 className="text-3xl font-bold mb-6 text-center text-[#086942]">Login</h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
@@ -55,7 +62,7 @@ const Login = () => {
             Sign Up
           </span>
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 };
