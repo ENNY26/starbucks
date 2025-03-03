@@ -1,24 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import FilterTab from '../Components/FilterTab';
 import SearchRecipe from '../Components/SearchRecipe';
 import Recipes from '../Components/Recipes';
-import Pagination from '../Components/Pagination'; // Create this component separately
+import Pagination from '../Components/Pagination';
 import { recipeOptions, fetchData } from '../utils/fetchData';
 
 const SearchPage = () => {
-  const [recipes, setRecipes] = useState([]); 
-  const [currentPage, setCurrentPage] = useState(1); 
-  const recipesPerPage = 10; 
-  // Fetch recipes on search
+  const [recipes, setRecipes] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const recipesPerPage = 10;
+
   const handleSearch = async (search) => {
     if (search) {
       const recipeData = await fetchData(
         'https://starbucks-coffee-db2.p.rapidapi.com/api/recipes',
         recipeOptions
       );
-      setRecipes(recipeData); 
-      setCurrentPage(1); 
+      setRecipes(recipeData);
+      setCurrentPage(1);
     }
+  };
+
+  const handleSaveRecipe = (recipe) => {
+    const savedRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
+    if (savedRecipes.some(r => r.name === recipe.name)) return; // Avoid duplicate saves
+    const newSavedRecipes = [...savedRecipes, { name: recipe.name, image: recipe.image }];
+    localStorage.setItem("savedRecipes", JSON.stringify(newSavedRecipes));
   };
 
   const indexOfLastRecipe = currentPage * recipesPerPage;
@@ -32,18 +39,16 @@ const SearchPage = () => {
       <FilterTab />
       <SearchRecipe onSearch={handleSearch} />
 
-      {/* Render current recipes */}
       <div className="mt-4">
         {currentRecipes.length > 0 ? (
           currentRecipes.map((recipe, index) => (
-            <Recipes key={index} recipe={recipe} />
+            <Recipes key={index} recipe={recipe} onSave={handleSaveRecipe} />
           ))
         ) : (
           <p>No recipes found.</p>
         )}
       </div>
 
-      {/* Pagination Component */}
       {recipes.length > recipesPerPage && (
         <Pagination
           recipesPerPage={recipesPerPage}
@@ -55,6 +60,5 @@ const SearchPage = () => {
     </div>
   );
 };
-  
 
-export default SearchPage
+export default SearchPage;
